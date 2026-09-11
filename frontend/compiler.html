@@ -5,67 +5,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor | CompilerIDE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/pages.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/status-bar.css">
 </head>
 
 <body class="theme-dark">
-    <!-- Top Global Navigation -->
-    <nav class="page-nav" style="border-bottom: 1px solid var(--border-color); background: var(--bg-header);">
-        <a href="/" class="logo menu-link">Compiler<span class="highlight">IDE</span></a>
-        <div class="page-nav-links">
-            <a href="/" class="menu-link">Home</a>
-            <a href="/about" class="menu-link">About</a>
-            <a href="/contact" class="menu-link">Contact</a>
-            <a href="/privacy" class="menu-link">Privacy</a>
-            <a href="/terms" class="menu-link">Terms</a>
-            <a href="/advertise" class="menu-link">Advertise</a>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
-                <svg class="theme-icon" viewBox="0 0 24 24">
-                    <path
-                        d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
-                </svg>
-            </button>
-        </div>
-    </nav>
     <div class="app-container">
-        <!-- Header / Toolbar -->
+        <!-- Professional Single App Header -->
         <header class="app-header">
-            <div class="logo" style="visibility: hidden; width: 0; min-width: 0; margin: 0; position: absolute;"></div>
-
-            <div class="editor-tabs" id="editor-tabs">
-                <!-- Dynamic tabs will go here, hardcoded for now -->
+            <div class="header-left">
+                <a href="/" class="logo">Compiler<span class="highlight">IDE</span></a>
+                <div class="editor-tabs" id="editor-tabs">
+                    <!-- Dynamic tabs will go here, hardcoded for now -->
+                </div>
             </div>
 
             <div class="header-actions">
-                <select id="lang-selector" class="lang-selector" title="Select Project Type"
-                    style="margin-right: 15px; padding: 5px; border-radius: 4px; background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color);">
+                <select id="lang-selector" class="lang-selector" title="Select Project Type">
                     <option value="web">Web (HTML/CSS/JS)</option>
                     <option value="python">Python</option>
                 </select>
-                <button id="btn-format" class="btn" title="Format Code">Format</button>
-                <button id="btn-run" class="btn btn-primary" title="Run Code">Run</button>
-                <button id="btn-stop" class="btn btn-danger" disabled title="Stop Execution">Stop</button>
+
+                <div class="header-divider"></div>
+
+                <button id="btn-undo" class="btn btn-small" title="Undo (Ctrl+Z)" aria-label="Undo">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 7v6h6" />
+                        <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+                    </svg>
+                </button>
+                <button id="btn-redo" class="btn btn-small" title="Redo (Ctrl+Y)" aria-label="Redo">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 7v6h-6" />
+                        <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13" />
+                    </svg>
+                </button>
+
+                <div class="header-divider"></div>
+
+                <button id="btn-format" class="btn btn-small" title="Format Code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                    Format
+                </button>
                 <button id="btn-clear" class="btn" title="Clear Editor">Clear</button>
-                <button id="btn-copy" class="btn" title="Copy Code">Copy</button>
-                <button id="btn-download" class="btn" title="Download Code">Download</button>
-                <div class="theme-toggle-container" style="margin-left: 10px;">
-                    <button id="theme-toggle" class="btn" title="Toggle Theme"
-                        style="padding: 5px; display: flex; align-items: center; justify-content: center;">
-                        <svg class="theme-icon" viewBox="0 0 24 24"
-                            style="width: 20px; height: 20px; fill: currentColor;">
-                            <path
-                                d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
-                        </svg>
-                    </button>
-                </div>
+                <button id="btn-copy" class="btn icon-only-mobile" title="Copy Code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <span>Copy</span>
+                </button>
+                <button id="btn-download" class="btn icon-only-mobile" title="Download Code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span>Download</span>
+                </button>
+
+                <div class="header-divider"></div>
+
+                <button id="btn-wrap" class="btn btn-small" title="Toggle Word Wrap">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M3 12h15a3 3 0 0 1 0 6H3" />
+                        <line x1="3" y1="18" x2="7" y2="14" />
+                        <line x1="3" y1="18" x2="7" y2="22" />
+                    </svg>
+                    Wrap
+                </button>
+                <button id="btn-font-dec" class="btn btn-small" title="Decrease Font Size">A−</button>
+                <button id="btn-font-inc" class="btn btn-small" title="Increase Font Size">A+</button>
+                <button id="btn-snippets" class="btn btn-small" title="Insert Code Snippet">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <path d="M9 9h6" />
+                        <path d="M9 12h6" />
+                        <path d="M9 15h4" />
+                    </svg>
+                    Snippets
+                </button>
+
+                <div class="header-divider"></div>
+
+                <button id="btn-share" class="btn btn-small" title="Share via URL">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>
+                    Share
+                </button>
+                <button id="btn-embed" class="btn btn-small" title="Copy Embed Code">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                    Embed
+                </button>
+
+                <div class="header-divider"></div>
+
+                <button id="btn-run" class="btn btn-primary" title="Run Code (Ctrl+Enter)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                    Run
+                </button>
+                <button id="btn-stop" class="btn btn-danger" disabled title="Stop Execution">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="6" width="12" height="12" />
+                    </svg>
+                    Stop
+                </button>
+
+                <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme"
+                    style="margin-left: var(--space-2);">
+                    <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+                    </svg>
+                </button>
             </div>
         </header>
 
@@ -73,8 +160,20 @@
         <main class="app-workspace">
             <!-- Activity Bar (VS Code style) -->
             <div class="activity-bar">
-                <button class="activity-action active" id="act-explorer" title="Explorer">📂</button>
-                <button class="activity-action" id="act-search" title="Search">🔍</button>
+                <button class="activity-action active" id="act-explorer" title="Explorer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+                    </svg>
+                </button>
+                <button class="activity-action" id="act-search" title="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                    </svg>
+                </button>
             </div>
 
             <!-- Sidebar (File Explorer / Search Panes) -->
@@ -84,8 +183,24 @@
                     <div class="sidebar-header">
                         <span class="sidebar-title">Explorer</span>
                         <div class="sidebar-actions">
-                            <button id="btn-new-file" title="New File" class="icon-btn">📄</button>
-                            <button id="btn-new-folder" title="New Folder" class="icon-btn">📁</button>
+                            <button id="btn-new-file" title="New File" class="icon-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="12" y1="18" x2="12" y2="12" />
+                                    <line x1="9" y1="15" x2="15" y2="15" />
+                                </svg>
+                            </button>
+                            <button id="btn-new-folder" title="New Folder" class="icon-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+                                    <line x1="12" y1="10" x2="12" y2="16" />
+                                    <line x1="9" y1="13" x2="15" y2="13" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="sidebar-content">
@@ -112,7 +227,7 @@
             <!-- Left Pane: Editor -->
             <section class="pane editor-pane" id="editor-pane">
                 <div id="monaco-container" class="monaco-container">
-                    <div class="editor-loader">Loading Editor...</div>
+                    <div class="editor-loader">Loading workspace...</div>
                 </div>
             </section>
 
@@ -122,12 +237,21 @@
             <!-- Right Pane: Preview + Console -->
             <section class="pane right-pane" id="right-pane">
                 <div class="preview-toolbar">
-                    <span class="preview-title">Live Preview</span>
+                    <span class="preview-title">Preview</span>
                     <div class="preview-controls">
                         <button id="btn-refresh-preview" class="btn btn-small">Refresh</button>
                         <label class="checkbox-label" title="Run preview on change (debounced)">
                             <input type="checkbox" id="live-preview-toggle" checked> Auto Run
                         </label>
+                        <button id="btn-fullscreen" class="btn btn-small" title="Toggle Fullscreen Preview">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 3 21 3 21 9" />
+                                <polyline points="9 21 3 21 3 15" />
+                                <line x1="21" y1="3" x2="14" y2="10" />
+                                <line x1="3" y1="21" x2="10" y2="14" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
@@ -140,33 +264,32 @@
 
                 <div class="console-pane" id="console-pane">
                     <div class="console-header">
-                        <span class="console-title">Console / Problems</span>
+                        <span class="console-title">Output</span>
                         <button id="btn-clear-console" class="btn btn-small">Clear</button>
                     </div>
                     <div class="console-output" id="console-output"></div>
                 </div>
             </section>
         </main>
-
-        <!-- Status Bar / Footer -->
-        <footer class="app-footer">
-            <div class="footer-left">
-                <span>CompilerIDE Local Workspace</span>
-            </div>
-            <div class="footer-right">
-                <a href="/about" target="_blank">About</a>
-                <a href="/contact" target="_blank">Contact</a>
-                <a href="/privacy" target="_blank">Privacy</a>
-                <a href="/terms" target="_blank">Terms</a>
-                <a href="/advertise" target="_blank">Advertise</a>
-            </div>
-        </footer>
     </div>
 
-    <!-- Theme Sync -->
-    <script src="js/theme.js?v=3"></script>
-    <!-- Main App -->
-    <script type="module" src="js/app.js?v=3"></script>
+    <!-- Status Bar -->
+    <footer id="status-bar" class="status-bar">
+        <div class="status-bar-left">
+            <div class="status-item">
+                <span id="status-dot" class="status-dot"></span>
+                <span id="status-state">Loading…</span>
+            </div>
+        </div>
+        <div class="status-bar-right">
+            <span id="status-pos" class="status-item">Ln 1, Col 1</span>
+            <span id="status-lang" class="status-item status-lang">html</span>
+            <span class="status-item status-shortcut">Ctrl+Enter to Run</span>
+        </div>
+    </footer>
+
+    <script src="js/theme.js?v=5"></script>
+    <script type="module" src="js/app.js?v=5"></script>
 </body>
 
 </html>

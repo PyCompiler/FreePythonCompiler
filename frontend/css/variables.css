@@ -1,75 +1,100 @@
 :root {
-    --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-mono: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
     --resizer-size: 6px;
-    --header-height: 55px;
+    --header-height: 56px;
+
+    /* Spacing system */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* Radii */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
 
     /* Animation Tokens */
-    --transition-fast: 0.2s ease;
+    --transition-fast: 0.15s ease;
 }
 
-/* Dark Theme */
+/* Dark Theme (Professional Slate/Indigo) */
 .theme-dark {
-    --bg-body: #1e1e1e;
-    --bg-header: #252526;
-    --bg-panel: #1e1e1e;
-    --bg-console: #1e1e1e;
-    --border-color: #333333;
+    --bg-body: #0B1120;
+    --bg-header: #0B1120;
+    --bg-panel: #0F172A;
+    --bg-console: #0F172A;
+    --border-color: #1E293B;
 
-    --text-base: #cccccc;
-    --text-muted: #888888;
-    --text-highlight: #4daafc;
-    --text-error: #f48771;
-    --text-warn: #cca700;
-    --text-info: #75beff;
-    --text-success: #89d185;
+    --text-base: #F8FAFC;
+    --text-muted: #94A3B8;
+    --text-highlight: #38BDF8;
+    --text-error: #F87171;
+    --text-warn: #FBBF24;
+    --text-info: #38BDF8;
+    --text-success: #4ADE80;
 
-    --resizer-bg: #333333;
-    --resizer-hover: #007acc;
+    --resizer-bg: #1E293B;
+    --resizer-hover: #2563EB;
 
-    --btn-bg: #3a3d41;
-    --btn-bg-hover: #4d5157;
-    --btn-text: #cccccc;
-    --btn-primary-bg: #0e639c;
-    --btn-primary-hover: #1177bb;
-    --btn-danger-bg: #c0392b;
-    --btn-danger-hover: #d35400;
+    --btn-bg: #1E293B;
+    --btn-bg-hover: #334155;
+    --btn-text: #F8FAFC;
 
-    --tab-bg: #2d2d2d;
-    --tab-active-bg: #1e1e1e;
-    --tab-border: #007acc;
-    --tab-hover-bg: #333333;
+    --btn-primary-bg: #2563EB;
+    --btn-primary-hover: #1D4ED8;
+    --btn-primary-text: #FFFFFF;
+
+    --btn-danger-bg: #DC2626;
+    --btn-danger-hover: #B91C1C;
+    --btn-danger-text: #FFFFFF;
+
+    --tab-bg: #0B1120;
+    --tab-active-bg: #0F172A;
+    --tab-border: #2563EB;
+    --tab-hover-bg: #1E293B;
 }
 
-/* Light Theme */
+/* Light Theme (Muted Whites/Off-whites/Indigo) */
 .theme-light {
-    --bg-body: #f8f9fa;
-    --bg-header: #ffffff;
-    --bg-panel: #ffffff;
-    --bg-console: #ffffff;
-    --border-color: #e0e0e0;
+    --bg-body: #F8FAFC;
+    --bg-header: #FFFFFF;
+    --bg-panel: #FFFFFF;
+    --bg-console: #F8FAFC;
+    --border-color: #E2E8F0;
 
-    --text-base: #333333;
-    --text-muted: #666666;
-    --text-highlight: #0066cc;
-    --text-error: #cc0000;
-    --text-warn: #b8860b;
-    --text-info: #005c99;
-    --text-success: #107c10;
+    --text-base: #0F172A;
+    --text-muted: #64748B;
+    --text-highlight: #2563EB;
+    --text-error: #DC2626;
+    --text-warn: #D97706;
+    --text-info: #2563EB;
+    --text-success: #16A34A;
 
-    --resizer-bg: #e0e0e0;
-    --resizer-hover: #007acc;
+    --resizer-bg: #E2E8F0;
+    --resizer-hover: #2563EB;
 
-    --btn-bg: #f0f0f0;
-    --btn-bg-hover: #e4e4e4;
-    --btn-text: #333333;
-    --btn-primary-bg: #007acc;
-    --btn-primary-hover: #005999;
-    --btn-danger-bg: #e74c3c;
-    --btn-danger-hover: #c0392b;
+    --btn-bg: #F1F5F9;
+    --btn-bg-hover: #E2E8F0;
+    --btn-text: #0F172A;
 
-    --tab-bg: #f3f3f3;
-    --tab-active-bg: #ffffff;
-    --tab-border: #007acc;
-    --tab-hover-bg: #ebebeb;
+    --btn-primary-bg: #2563EB;
+    --btn-primary-hover: #1D4ED8;
+    --btn-primary-text: #FFFFFF;
+
+    --btn-danger-bg: #DC2626;
+    --btn-danger-hover: #B91C1C;
+    --btn-danger-text: #FFFFFF;
+
+    --tab-bg: #F8FAFC;
+    --tab-active-bg: #FFFFFF;
+    --tab-border: #2563EB;
+    --tab-hover-bg: #F1F5F9;
 }

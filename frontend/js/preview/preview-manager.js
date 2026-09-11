@@ -106,6 +106,9 @@ export class PreviewManager {
                 termPrint('', 't-out');
                 let pyodide = await loadPyodide();
                 
+                // Notify parent that Pyodide is ready
+                window.parent.postMessage({ source: 'compiler-playground', type: 'pyodide-ready', level: 'info', payload: '' }, '*');
+                
                 pyodide.setStdout({ batched: (msg) => termPrint(msg, 't-out') });
                 pyodide.setStderr({ batched: (msg) => { termPrint(msg, 't-err'); console.error(msg); } });
                 

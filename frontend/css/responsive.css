@@ -40,7 +40,7 @@
         flex: none;
         height: 200px;
         border-right: none;
-        border-bottom: 2px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
     }
 
     .resizer-h,
@@ -53,6 +53,7 @@
         flex: none;
         width: 100%;
         min-height: 50vh;
+        border-right: none;
     }
 
     .monaco-container {
@@ -64,7 +65,7 @@
         flex: none;
         width: 100%;
         min-height: 50vh;
-        border-top: 2px solid var(--border-color);
+        border-top: 1px solid var(--border-color);
         display: flex;
         flex-direction: column;
     }
@@ -83,14 +84,14 @@
     .app-header {
         flex-direction: column;
         height: auto;
-        padding: 8px 12px;
+        padding: var(--space-2) var(--space-3);
         align-items: stretch;
     }
 
     .editor-tabs {
         width: 100%;
         overflow-x: auto;
-        margin-bottom: 8px;
+        margin-bottom: var(--space-2);
         border-bottom: 1px solid var(--border-color);
     }
 
@@ -101,8 +102,8 @@
     }
 
     .header-actions .btn {
-        padding: 6px 10px;
-        font-size: 0.8rem;
+        padding: var(--space-1) var(--space-2);
+        font-size: 13px;
         margin: 2px;
         flex: 1;
         text-align: center;
@@ -111,7 +112,7 @@
     #lang-selector {
         width: 100%;
         margin-right: 0;
-        margin-bottom: 8px;
+        margin-bottom: var(--space-2);
     }
 
     .theme-toggle-container {
@@ -123,8 +124,13 @@
     }
 
     .tab {
-        padding: 8px 12px;
+        padding: var(--space-2) var(--space-3);
         white-space: nowrap;
+    }
+
+    .icon-only-mobile span {
+        display: none;
+        /* Strip button text on mobile to save space */
     }
 
     .app-footer {
