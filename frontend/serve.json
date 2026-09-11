@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/html-compiler",
+            "destination": "/compiler.html"
+        },
+        {
+            "source": "/python-compiler",
+            "destination": "/compiler.html"
+        }
+    ]
+}
