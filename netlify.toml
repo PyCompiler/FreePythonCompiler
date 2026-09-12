@@ -40,3 +40,15 @@
   to = "/advertise.html"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog-post.html"
+  status = 200
+  force = true
