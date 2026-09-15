@@ -7,6 +7,14 @@
         {
             "source": "/python-compiler",
             "destination": "/compiler.html"
+        },
+        {
+            "source": "/blog/:slug",
+            "destination": "/blog-post.html"
+        },
+        {
+            "source": "/blog/*",
+            "destination": "/blog-post.html"
         }
     ]
 }
