@@ -58,7 +58,7 @@ async function loadPost() {
         const content = post.content.rendered;
         const date = formatDate(post.date);
 
-        let author = 'CompilerIDE Team';
+        let author = 'FreePythonCompiler Team';
         try { author = post._embedded.author[0].name; } catch (e) { }
 
         let imgHtml = '';
@@ -82,7 +82,7 @@ async function loadPost() {
             </div>
         `;
 
-        document.title = `${title} | CompilerIDE Blog`;
+        document.title = `${title} | FreePythonCompiler Blog`;
     } catch (error) {
         console.error('Error fetching post:', error);
         postContainer.innerHTML = '<h2>Error loading article</h2><p>Please try again later.</p>';

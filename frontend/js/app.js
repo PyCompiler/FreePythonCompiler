@@ -229,10 +229,15 @@ function initResizers() {
     const editorPane = document.getElementById('editor-pane');
     let isResizingH = false;
 
+    const toggleIframes = (pointerEvents) => {
+        document.querySelectorAll('iframe').forEach(el => el.style.pointerEvents = pointerEvents);
+    };
+
     if (resizerMain) {
         resizerMain.addEventListener('mousedown', () => {
             isResizingH = true;
             document.body.style.cursor = 'col-resize';
+            toggleIframes('none');
         });
     }
 
@@ -244,6 +249,7 @@ function initResizers() {
         resizerSidebar.addEventListener('mousedown', () => {
             isResizingSidebar = true;
             document.body.style.cursor = 'col-resize';
+            toggleIframes('none');
         });
     }
 
@@ -255,6 +261,7 @@ function initResizers() {
         resizerConsole.addEventListener('mousedown', () => {
             isResizingV = true;
             document.body.style.cursor = 'row-resize';
+            toggleIframes('none');
         });
     }
 
@@ -290,6 +297,7 @@ function initResizers() {
             isResizingV = false;
             isResizingSidebar = false;
             document.body.style.cursor = 'default';
+            toggleIframes('auto');
             window.dispatchEvent(new Event('resize'));
         }
     });

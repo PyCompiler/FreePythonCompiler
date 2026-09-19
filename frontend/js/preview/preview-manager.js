@@ -50,7 +50,9 @@ export class PreviewManager {
 <html>
 <head>
     <meta charset="UTF-8">
-    <style>${terminalStyles}</style>
+    <style>${terminalStyles}
+    .t-image { margin-top: 8px; margin-bottom: 8px; max-width: 100%; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
     <script>${consoleBridgeScript}</script>
     ${hasPython ? `<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>` : ''}
 </head>
@@ -67,6 +69,14 @@ export class PreviewManager {
         const term = document.getElementById('terminal');
         const inputRow = document.getElementById('input-row');
         const userInput = document.getElementById('user-input');
+
+        window.render_plot = function(base64Data) {
+            const img = document.createElement('img');
+            img.src = 'data:image/png;base64,' + base64Data;
+            img.className = 't-image';
+            term.appendChild(img);
+            term.scrollTop = term.scrollHeight;
+        };
 
         function termPrint(text, cls) {
             const line = document.createElement('div');
@@ -106,6 +116,9 @@ export class PreviewManager {
                 termPrint('', 't-out');
                 let pyodide = await loadPyodide();
                 
+                termPrint('Loading packages (matplotlib)...', 't-echo');
+                await pyodide.loadPackage(['matplotlib']);
+
                 // Notify parent that Pyodide is ready
                 window.parent.postMessage({ source: 'compiler-playground', type: 'pyodide-ready', level: 'info', payload: '' }, '*');
                 
@@ -120,6 +133,37 @@ export class PreviewManager {
                     termPrint('> ' + result, 't-echo');
                     return result;
                 });
+
+                const pythonCode = [
+                    'import sys',
+                    'import base64',
+                    'import io',
+                    '',
+                    'def custom_show():',
+                    '    try:',
+                    '        import matplotlib.pyplot as plt',
+                    '        fig = plt.gcf()',
+                    '        if not fig.axes:',
+                    '            return',
+                    '        buf = io.BytesIO()',
+                    '        fig.savefig(buf, format="png", bbox_inches="tight", dpi=100)',
+                    '        buf.seek(0)',
+                    '        data = base64.b64encode(buf.read()).decode("utf-8")',
+                    '        import js',
+                    '        js.render_plot(data)',
+                    '        plt.clf()',
+                    '    except Exception as e:',
+                    '        print(f"Plotting error: {e}")',
+                    '',
+                    'try:',
+                    '    import matplotlib',
+                    '    matplotlib.use("Agg")',
+                    '    import matplotlib.pyplot as plt',
+                    '    plt.show = custom_show',
+                    'except ImportError:',
+                    '    pass'
+                ].join('\\n');
+                await pyodide.runPythonAsync(pythonCode);
 
                 const code = document.getElementById('py-code').textContent;
                 await pyodide.runPythonAsync(code);
@@ -137,7 +181,7 @@ export class PreviewManager {
     <script type="module">${js || ''}</script>
     `}
 </body>
-</html>`;
+</html > `;
 
         this.iframe.srcdoc = htmlContent;
     }
