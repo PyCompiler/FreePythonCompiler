@@ -1,0 +1,40 @@
+# FreePythonCompiler - Comprehensive Technical Reference & Documentation
+
+## Overview
+FreePythonCompiler (https://freepythoncompiler.com/) is a high-performance, web-based code compilation and execution environment. It enables developers, educators, and learners to write, test, and execute Python and modern frontend code (HTML, CSS, JavaScript) directly within standard web browsers without installing software, configuring environments, or creating accounts.
+
+## Technical Architecture
+
+### 1. Python Runtime Engine (Pyodide WebAssembly)
+- **Version**: Python 3.12 via Pyodide WebAssembly
+- **Execution Model**: Client-side execution inside browser memory space.
+- **Worker Isolation**: Code runs within a dedicated Web Worker thread, keeping the main UI thread responsive even during compute-intensive loops.
+- **Standard Library Support**: Includes Python math, sys, json, random, re, datetime, itertools, functools, collections, and pure Python libraries.
+- **Security & Privacy**: No user code or input data is transmitted to external servers. Execution is strictly sandboxed by the browser's WebAssembly security boundary.
+
+### 2. Web Runtime (HTML, CSS, JavaScript)
+- **Execution Model**: Sandboxed iframe with `sandbox="allow-scripts allow-modals"` permissions.
+- **Live Preview**: Real-time rendering as code is typed or executed on demand.
+- **Console Capture**: Custom interception of `console.log`, `console.error`, `console.warn`, and `console.info` displayed in an integrated bottom terminal tab.
+
+### 3. Editor Interface (Monaco Editor)
+- **Engine**: Microsoft Monaco Editor (the same core that powers Visual Studio Code).
+- **Features**: Semantic tokenization, auto-indentation, code folding, multi-cursor editing, bracket pair colorization, line numbers, and keyboard shortcuts (Ctrl+Enter to run, Ctrl+Z undo, Ctrl+Y redo).
+- **Themes**: Synchronized custom Dark and Light modes engineered to match the FreePythonCompiler visual design system.
+
+## URL Structure & Endpoints
+- Homepage: https://freepythoncompiler.com/
+- Python Compiler: https://freepythoncompiler.com/python-compiler
+- HTML/CSS/JS Compiler: https://freepythoncompiler.com/html-compiler
+- Architecture & Features: https://freepythoncompiler.com/features
+- Blog & Tutorials: https://freepythoncompiler.com/blog
+- About Us: https://freepythoncompiler.com/about
+- Contact & Feedback: https://freepythoncompiler.com/contact
+- Privacy Policy: https://freepythoncompiler.com/privacy
+- Terms of Service: https://freepythoncompiler.com/terms
+- Advertise: https://freepythoncompiler.com/advertise
+
+## FAQ & Common Use Cases
+- **Is an internet connection required to execute code after loading?** Once the Pyodide WebAssembly bundle is cached in the browser, code execution runs completely offline.
+- **Are there usage limits or paywalls?** No. FreePythonCompiler provides unlimited, free access for learning, prototyping, and teaching.
+- **How does it compare to server-side compilers?** Unlike server-based compilers (which suffer from network round-trip lag, server queues, and timeout restrictions), FreePythonCompiler executes with zero network latency directly on client CPU hardware.

@@ -51,15 +51,15 @@ async function fetchPosts() {
             }
 
             return `
-                <div class="blog-card">
-                    <img class="blog-card-image" src="${imgUrl}" alt="${title}">
+                <a href="/blog/${slug}" class="blog-card">
+                    <img class="blog-card-image" src="${imgUrl}" alt="${title}" loading="lazy">
                     <div class="blog-card-content">
                         <div class="blog-card-date">${date}</div>
                         <h3 class="blog-card-title">${title}</h3>
                         <div class="blog-card-excerpt">${excerpt}</div>
-                        <a href="/blog/${slug}" class="blog-card-link">Read More &rarr;</a>
+                        <span class="blog-card-link">Read More &rarr;</span>
                     </div>
-                </div>
+                </a>
             `;
         }).join('');
     } catch (error) {

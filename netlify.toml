@@ -2,6 +2,12 @@
   publish = "frontend"
 
 [[redirects]]
+  from = "/compiler"
+  to = "/compiler.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/html-compiler"
   to = "/compiler.html"
   status = 200
@@ -10,6 +16,12 @@
   from = "/python-compiler"
   to = "/compiler.html"
   status = 200
+
+[[redirects]]
+  from = "/features"
+  to = "/features.html"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/about"
@@ -52,3 +64,30 @@
   to = "/blog-post.html"
   status = 200
   force = true
+
+# Global Security Headers & HTTPS Enforcement (Core Web Vitals & SEO Security)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Asset Caching for High Core Web Vitals (Fast LCP / FCP)
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"

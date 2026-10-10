@@ -1,5 +1,10 @@
 {
+    "cleanUrls": true,
     "rewrites": [
+        {
+            "source": "/compiler",
+            "destination": "/compiler.html"
+        },
         {
             "source": "/html-compiler",
             "destination": "/compiler.html"
@@ -7,6 +12,34 @@
         {
             "source": "/python-compiler",
             "destination": "/compiler.html"
+        },
+        {
+            "source": "/features",
+            "destination": "/features.html"
+        },
+        {
+            "source": "/about",
+            "destination": "/about.html"
+        },
+        {
+            "source": "/contact",
+            "destination": "/contact.html"
+        },
+        {
+            "source": "/privacy",
+            "destination": "/privacy.html"
+        },
+        {
+            "source": "/terms",
+            "destination": "/terms.html"
+        },
+        {
+            "source": "/advertise",
+            "destination": "/advertise.html"
+        },
+        {
+            "source": "/blog",
+            "destination": "/blog.html"
         },
         {
             "source": "/blog/:slug",

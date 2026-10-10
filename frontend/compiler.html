@@ -2,9 +2,14 @@
 <html lang="en">
 
 <head>
+    <meta name="description" content="Interactive online code compiler and editor for Python 3.12, HTML, CSS, and JavaScript. Features VS Code Monaco Editor, instant execution, and dark mode.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor | FreePythonCompiler</title>
+    <title>Online Python & Web Code Editor | FreePythonCompiler</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://freepythoncompiler.com/python-compiler">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
@@ -17,7 +22,10 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="stylesheet" href="css/status-bar.css">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVVTV058YR"></script>
     <script>
@@ -27,6 +35,82 @@
 
         gtag('config', 'G-QVVTV058YR');
     </script>
+    <meta property="og:site_name" content="FreePythonCompiler">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Online Python & Web Code Editor | FreePythonCompiler">
+    <meta property="og:description" content="Interactive online code compiler and editor for Python 3.12, HTML, CSS, and JavaScript. Features VS Code Monaco Editor, instant execution, and dark mode.">
+    <meta property="og:url" content="https://freepythoncompiler.com/python-compiler">
+    <meta property="og:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Online Python & Web Code Editor | FreePythonCompiler">
+    <meta name="twitter:description" content="Interactive online code compiler and editor for Python 3.12, HTML, CSS, and JavaScript. Features VS Code Monaco Editor, instant execution, and dark mode.">
+    <meta name="twitter:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta name="google-site-verification" content="G-QVVTV058YR-site-verification">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "FreePythonCompiler Online Code Editor",
+      "url": "https://freepythoncompiler.com/python-compiler",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I execute Python or Web code in the editor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click the green 'Run' button in the status bar or press the keyboard shortcut Ctrl+Enter (Cmd+Enter on macOS). Python output displays immediately in the bottom console panel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What keyboard shortcuts are supported in the Monaco Editor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The editor supports standard VS Code shortcuts: Ctrl+Enter to run code, Ctrl+Z to undo, Ctrl+Y to redo, Ctrl+F to search, Ctrl+H to replace, Alt+Click for multi-cursor editing, and Ctrl+/ to toggle comments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Python libraries are available in the in-browser runtime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All Python 3.12 standard libraries are supported (math, random, sys, json, re, datetime, itertools, collections, statistics) alongside popular WebAssembly packages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I download or export my project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click the 'Download' button in the top action toolbar to export your active script, or use the ZIP export option to download your full multi-file workspace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the editor offline without an active internet connection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Once the editor assets and Pyodide WebAssembly runtime are cached in your browser during your initial visit, code compilation and editing work offline seamlessly."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 
 <body class="theme-dark">
@@ -34,7 +118,11 @@
         <!-- Professional Single App Header -->
         <header class="app-header">
             <div class="header-left">
-                <a href="/" class="logo">Free<span class="highlight">Python</span>Compiler</a>
+                <a href="/" class="logo" aria-label="FreePythonCompiler Home">
+                    <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+                    <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+                </a>
+                <h1 class="sr-only">Free Online Python & Web Code Compiler - Monaco Editor & Pyodide IDE</h1>
                 <div class="editor-tabs" id="editor-tabs">
                     <!-- Dynamic tabs will go here, hardcoded for now -->
                 </div>
@@ -300,6 +388,88 @@
 
     <script src="js/theme.js?v=5"></script>
     <script type="module" src="js/app.js?v=5"></script>
+
+    <!-- Search-Engine Accessible & Modal FAQ Section -->
+    <div id="compiler-faq-container" style="display: none;">
+    <!-- Standardized High-Volume FAQ Section -->
+    <section class="faq-section" aria-label="Frequently Asked Questions">
+        <div class="section-head">
+            <div class="section-tag">Editor FAQ</div>
+            <h2 class="section-title">Frequently Asked Questions on Editor & Execution</h2>
+            <p class="section-subtitle">Quick answers to common questions about using the online compiler and IDE.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <details class="faq-item" open>
+                <summary class="faq-summary">
+                    <span>How do I execute Python or Web code in the editor?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Click the green 'Run' button in the status bar or press the keyboard shortcut Ctrl+Enter (Cmd+Enter on macOS). Python output displays immediately in the bottom console panel.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>What keyboard shortcuts are supported in the Monaco Editor?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> The editor supports standard VS Code shortcuts: Ctrl+Enter to run code, Ctrl+Z to undo, Ctrl+Y to redo, Ctrl+F to search, Ctrl+H to replace, Alt+Click for multi-cursor editing, and Ctrl+/ to toggle comments.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Which Python libraries are available in the in-browser runtime?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> All Python 3.12 standard libraries are supported (math, random, sys, json, re, datetime, itertools, collections, statistics) alongside popular WebAssembly packages.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>How do I download or export my project?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Click the 'Download' button in the top action toolbar to export your active script, or use the ZIP export option to download your full multi-file workspace.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Can I use the editor offline without an active internet connection?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Yes. Once the editor assets and Pyodide WebAssembly runtime are cached in your browser during your initial visit, code compilation and editing work offline seamlessly.
+                    </p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    </div>
+
 </body>
 
 </html>

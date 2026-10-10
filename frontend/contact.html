@@ -4,68 +4,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | FreePythonCompiler</title>
-    <meta name="description" content="Get in touch with the FreePythonCompiler team.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Contact & Engineering Support | FreePythonCompiler</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://freepythoncompiler.com/contact">
+    <meta name="description" content="Get in touch with the FreePythonCompiler engineering team for questions, bug reports, feature suggestions, or institutional partnerships.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVVTV058YR"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-QVVTV058YR');
+    </script>
+        <meta property="og:site_name" content="FreePythonCompiler">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact & Engineering Support | FreePythonCompiler">
+    <meta property="og:description" content="Get in touch with the FreePythonCompiler engineering team for questions, bug reports, feature suggestions, or institutional partnerships.">
+    <meta property="og:url" content="https://freepythoncompiler.com/contact">
+    <meta property="og:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact & Engineering Support | FreePythonCompiler">
+    <meta name="twitter:description" content="Get in touch with the FreePythonCompiler engineering team for questions, bug reports, feature suggestions, or institutional partnerships.">
+    <meta name="twitter:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta name="google-site-verification" content="G-QVVTV058YR-site-verification">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact FreePythonCompiler",
+      "url": "https://freepythoncompiler.com/contact",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "FreePythonCompiler"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the typical response time for support inquiries?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our engineering team typically responds to all developer inquiries, bug reports, and partnership requests within 24 business hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I submit a feature request or report an editor bug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can submit feature suggestions and bug reports directly through the contact form on this page by selecting 'Bug Report' or 'Feature Request' in the inquiry topic dropdown."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can our school or organization integrate FreePythonCompiler into our curriculum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We actively assist educators with curriculum integration, custom embed configurations, and project templates. Reach out via the form with your institutional details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I discuss sponsorship or advertising opportunities?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For brand sponsorships, developer tool promotions, or institutional partnerships, select 'Partnership / Sponsorship' in the contact form or visit our dedicated Advertise page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide one-on-one debugging for personal homework assignments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While our engineering support focuses on platform functionality, compiler bugs, and feature requests, we maintain extensive guides and tutorials on our Blog to help students solve common programming challenges."
+      }
+    }
+  ]
+}
     </script>
 </head>
 
 <body class="theme-dark page-static">
+    <!-- Navbar -->
     <nav class="page-nav">
-        <a href="/" class="logo menu-link">Free<span class="highlight">Python</span>Compiler</a>
-        <div class="page-nav-links">
+        <a href="/" class="logo menu-link" aria-label="FreePythonCompiler Home">
+            <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+            <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+        </a>
+        <div class="page-nav-links" id="nav-links">
             <a href="/" class="menu-link">Home</a>
+            <a href="/features" class="menu-link">Features</a>
             <a href="/about" class="menu-link">About</a>
             <a href="/blog" class="menu-link">Blog</a>
             <a href="/contact" class="menu-link active">Contact</a>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
                 <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
                 </svg>
             </button>
             <a href="/html-compiler" class="btn btn-primary">Open Editor</a>
         </div>
+        <button class="burger-btn" id="burger-btn" aria-label="Toggle Navigation Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
     </nav>
 
-    <div class="page-container">
-        <h1>Contact <span class="gradient">Us</span></h1>
-        <p>Have a question, suggestion, or just want to say hello? We'd love to hear from you. Fill out the form below
-            and our team will get back to you as soon as possible.</p>
-
-        <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/contact.html">
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <textarea name="message" rows="6" placeholder="How can we help you?" required></textarea>
-            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.8rem;">Send
-                Message</button>
-        </form>
-    </div>
-
-    <footer class="page-footer">
-        <div class="footer-left">
-            <span>&copy; 2026 FreePythonCompiler. All rights reserved.</span>
+    <!-- Main Content -->
+    <main class="page-container">
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>WE'D LOVE TO HEAR FROM YOU</span>
         </div>
-        <div class="footer-right">
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/advertise">Advertise</a>
+
+        <h1>Contact Our Team</h1>
+        <p>Have questions, ideas, feedback, or need assistance? Reach out to us below and our engineering team will get back to you promptly.</p>
+
+        <div class="contact-layout">
+            <!-- Left: Information Cards -->
+            <div class="contact-info">
+                <h2>Direct Channels</h2>
+                <p>We actively monitor inquiries and value developer feedback to improve the compiler experience.</p>
+
+                <div class="contact-info-items">
+                    <div class="contact-info-item">
+                        <div class="contact-info-item-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-info-item-text">
+                            <strong>Support &amp; Inquiries</strong>
+                            <span>support@freepythoncompiler.com</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-item-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-info-item-text">
+                            <strong>Average Response Time</strong>
+                            <span>Within 24 hours on business days</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-item-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-info-item-text">
+                            <strong>Feature Requests &amp; Bugs</strong>
+                            <span>We review user suggestions regularly for product roadmaps</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-item-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-info-item-text">
+                            <strong>Partnerships &amp; Ads</strong>
+                            <span>Visit our advertise page or mention sponsorship in your message</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="contact-form-card">
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/contact.html">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-base);">Your Name</label>
+                        <input type="text" name="name" placeholder="Alex Johnson" required>
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-base);">Email Address</label>
+                        <input type="email" name="email" placeholder="alex@example.com" required>
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-base);">Inquiry Topic</label>
+                        <select name="subject" required style="cursor: pointer;">
+                            <option value="General Question">General Question</option>
+                            <option value="Bug Report">Bug Report</option>
+                            <option value="Feature Request">Feature Request</option>
+                            <option value="Partnership / Sponsorship">Partnership / Sponsorship</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text-base);">Your Message</label>
+                        <textarea name="message" rows="5" placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-hero-primary" style="width: 100%; justify-content: center; margin-top: 8px;">
+                        Send Message &rarr;
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Consistent SaaS Footer -->
+        <!-- Standardized High-Volume FAQ Section -->
+    <section class="faq-section" aria-label="Frequently Asked Questions">
+        <div class="section-head">
+            <div class="section-tag">Support FAQ</div>
+            <h2 class="section-title">Frequently Asked Support & Community Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions about communication, bug reports, and partnerships.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <details class="faq-item" open>
+                <summary class="faq-summary">
+                    <span>What is the typical response time for support inquiries?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Our engineering team typically responds to all developer inquiries, bug reports, and partnership requests within 24 business hours.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>How can I submit a feature request or report an editor bug?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> You can submit feature suggestions and bug reports directly through the contact form on this page by selecting 'Bug Report' or 'Feature Request' in the inquiry topic dropdown.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Can our school or organization integrate FreePythonCompiler into our curriculum?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Yes. We actively assist educators with curriculum integration, custom embed configurations, and project templates. Reach out via the form with your institutional details.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>How do I discuss sponsorship or advertising opportunities?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> For brand sponsorships, developer tool promotions, or institutional partnerships, select 'Partnership / Sponsorship' in the contact form or visit our dedicated Advertise page.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Do you provide one-on-one debugging for personal homework assignments?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> While our engineering support focuses on platform functionality, compiler bugs, and feature requests, we maintain extensive guides and tutorials on our Blog to help students solve common programming challenges.
+                    </p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <footer class="saas-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" aria-label="FreePythonCompiler Home">
+                    <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+                    <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+                </a>
+                <p>The free, instant online code compiler and development playground. Run Python and web code directly in your browser with zero latency.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="/python-compiler">Python Compiler</a></li>
+                    <li><a href="/html-compiler">HTML/CSS/JS Compiler</a></li>
+                    <li><a href="/features">Features &amp; Engine</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/blog">Blog &amp; Tutorials</a></li>
+                    <li><a href="/contact">Support &amp; Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/advertise">Advertise With Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 FreePythonCompiler. All rights reserved.</span>
+            <span>Built with Pyodide WebAssembly &amp; Monaco Editor.</span>
         </div>
     </footer>
 

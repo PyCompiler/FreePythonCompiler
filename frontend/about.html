@@ -4,88 +4,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | FreePythonCompiler</title>
-    <meta name="description" content="Learn more about FreePythonCompiler, the browser-based coding platform.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>About Us & Our Mission | FreePythonCompiler</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://freepythoncompiler.com/about">
+    <meta name="description" content="Learn about FreePythonCompiler — the ultra-fast, 100% browser-based code compiler built to make software engineering education free and instantly accessible.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVVTV058YR"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-QVVTV058YR');
+    </script>
+        <meta property="og:site_name" content="FreePythonCompiler">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About Us & Our Mission | FreePythonCompiler">
+    <meta property="og:description" content="Learn about FreePythonCompiler — the ultra-fast, 100% browser-based code compiler built to make software engineering education free and instantly accessible.">
+    <meta property="og:url" content="https://freepythoncompiler.com/about">
+    <meta property="og:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Us & Our Mission | FreePythonCompiler">
+    <meta name="twitter:description" content="Learn about FreePythonCompiler — the ultra-fast, 100% browser-based code compiler built to make software engineering education free and instantly accessible.">
+    <meta name="twitter:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta name="google-site-verification" content="G-QVVTV058YR-site-verification">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About FreePythonCompiler",
+      "url": "https://freepythoncompiler.com/about",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "FreePythonCompiler",
+        "url": "https://freepythoncompiler.com/",
+        "description": "Free, instant in-browser code compilation and playground."
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the core mission of FreePythonCompiler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our mission is to democratize programming education and rapid prototyping by providing a zero-setup, zero-cost, high-performance online IDE accessible to anyone with a web browser worldwide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is FreePythonCompiler designed for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FreePythonCompiler is built for students learning computer science, educators conducting classroom demonstrations, researchers testing quick algorithms, and professional developers prototyping web and Python components."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did we choose WebAssembly instead of server-side containers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Server-based compilers are expensive to maintain, suffer from network bottlenecks, and require strict execution timeouts. Client-side WebAssembly shifts execution to the user's browser, giving unlimited free compute, instant responses, and bulletproof user privacy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can schools, universities, and coding bootcamps use FreePythonCompiler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. FreePythonCompiler is freely available for educational institutions. Because it requires zero software installation or administrator privileges, it runs seamlessly on Chromebooks, school laptops, and restricted lab computers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is FreePythonCompiler funded and maintained?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FreePythonCompiler is sustained through non-intrusive developer sponsorships and partnerships. We are committed to keeping core compilation, Monaco editor features, and the Python runtime free for everyone forever."
+      }
+    }
+  ]
+}
     </script>
 </head>
 
 <body class="theme-dark page-static">
+    <!-- Navbar -->
     <nav class="page-nav">
-        <a href="/" class="logo menu-link">Free<span class="highlight">Python</span>Compiler</a>
-        <div class="page-nav-links">
+        <a href="/" class="logo menu-link" aria-label="FreePythonCompiler Home">
+            <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+            <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+        </a>
+        <div class="page-nav-links" id="nav-links">
             <a href="/" class="menu-link">Home</a>
+            <a href="/features" class="menu-link">Features</a>
             <a href="/about" class="menu-link active">About</a>
             <a href="/blog" class="menu-link">Blog</a>
             <a href="/contact" class="menu-link">Contact</a>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
                 <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
                 </svg>
             </button>
             <a href="/html-compiler" class="btn btn-primary">Open Editor</a>
         </div>
+        <button class="burger-btn" id="burger-btn" aria-label="Toggle Navigation Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
     </nav>
 
-    <div class="page-container">
-        <h1>About <span class="gradient">Our Platform</span></h1>
-        <p>Welcome to FreePythonCompiler — a robust, fully browser-based coding playground designed for modern web developers
-            and learners. We built this tool to provide a frictionless environment where creativity can flourish without
-            limits, heavy setup, or slow feedback loops.</p>
+    <!-- Main Content -->
+    <main class="page-container">
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>OUR MISSION &amp; STORY</span>
+        </div>
+
+        <h1>Engineered for Speed, <span class="gradient-text">Built for Everyone</span></h1>
+        <p>FreePythonCompiler is a next-generation browser-native IDE designed to eliminate environment configuration, dependency conflicts, and slow feedback loops for developers, learners, and educators worldwide.</p>
 
         <h2>Our Mission</h2>
-        <p>Our mission is to democratize web development by offering a world-class coding environment accessible to
-            anyone, anywhere, entirely within the browser. Whether you are learning HTML, CSS, and JavaScript for the
-            first time, or prototyping a high-fidelity component, our tool strives to offer the features of a desktop
-            IDE — instantly.</p>
+        <p>We believe learning to program and testing ideas should be instantaneous. Whether you are an educator teaching your first Python algorithm, a student practicing data structures, or a seasoned developer prototyping a web component, FreePythonCompiler delivers a desktop-grade IDE experience right in your browser with zero installation, zero account requirements, and zero cost.</p>
 
-        <h2>What We Offer</h2>
-        <ul>
-            <li><strong>Monaco Editor</strong> — The same engine that powers VS Code, with full IntelliSense and syntax
-                highlighting.</li>
-            <li><strong>Live Preview</strong> — See your code render in real-time with automatic debounced refreshes.
-            </li>
-            <li><strong>File Explorer</strong> — Create, rename, and delete files and folders just like a real IDE.</li>
-            <li><strong>Python Support</strong> — Run Python code directly in the browser thanks to Pyodide.</li>
-            <li><strong>Dark & Light Themes</strong> — Persistent, elegant themes that work across the entire platform.
-            </li>
-        </ul>
+        <h2>Why Developers Love Us</h2>
+        <div class="about-cards">
+            <div class="about-card">
+                <div class="about-card-icon">⚡</div>
+                <h3>WebAssembly Python Runtime</h3>
+                <p>Run real CPython 3.11 in your browser using Pyodide WebAssembly. Supports popular data science packages like NumPy and Pandas with zero server latency.</p>
+            </div>
 
-        <h2>Our Technology</h2>
-        <p>FreePythonCompiler is a purely frontend application. There are no servers, no backends, and no data leaving your
-            machine. Your code stays in the browser, executed safely within sandboxed iframes and WebAssembly
-            environments. This means instant performance, complete privacy, and zero cost.</p>
+            <div class="about-card">
+                <div class="about-card-icon">💻</div>
+                <h3>VS Code Monaco Engine</h3>
+                <p>Powered by Microsoft Monaco Editor with intelligent code completion, syntax highlighting, error diagnostics, and customizable keyboard shortcuts.</p>
+            </div>
 
-        <h2>The Team</h2>
-        <p>We are a passionate group of developers who believe that the best tools should be free, fast, and beautiful.
-            FreePythonCompiler was born out of the desire to have a coding playground that looks and feels as good as the code
-            we write in it.</p>
-    </div>
+            <div class="about-card">
+                <div class="about-card-icon">🌐</div>
+                <h3>Full Web Stack Sandbox</h3>
+                <p>Build and preview HTML5, CSS3, and modern JavaScript in real-time with responsive viewport testing and sandboxed iframe execution.</p>
+            </div>
 
-    <footer class="page-footer">
-        <div class="footer-left">
-            <span>&copy; 2026 FreePythonCompiler. All rights reserved.</span>
+            <div class="about-card">
+                <div class="about-card-icon">🔒</div>
+                <h3>100% Privacy & Security</h3>
+                <p>Everything runs entirely on your local machine. Your code, data, and scripts are never stored or transmitted to external servers.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-card-icon">📁</div>
+                <h3>Virtual File Workspace</h3>
+                <p>Manage multi-file projects, create folders, upload scripts, and download ZIP packages with full offline persistence using IndexedDB.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-card-icon">🎨</div>
+                <h3>Modern SaaS Design</h3>
+                <p>Thoughtfully crafted with high-contrast dark & light themes, fluid typography, and snappy performance on both mobile and desktop screens.</p>
+            </div>
         </div>
-        <div class="footer-right">
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/advertise">Advertise</a>
+
+        <h2>Technology & Architecture</h2>
+        <p>FreePythonCompiler is built with cutting-edge browser technologies: WebAssembly, Service Workers, IndexedDB, and the Monaco Editor core. Because execution happens strictly client-side, we deliver instantaneous response times with zero infrastructure overhead. Explore our in-depth <a href="/features" style="color: var(--brand-primary); font-weight: 600;">Technical Architecture Guide</a> and browse our <a href="/blog" style="color: var(--brand-primary); font-weight: 600;">Engineering Blog</a> to learn how it works under the hood.</p>
+
+        <div class="about-team-banner">
+            <h2>Start Coding in Seconds</h2>
+            <p>No downloads, no logins, no credit cards. Jump right into our online playground and write your first line of code today.</p>
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                <a href="/python-compiler" class="btn-hero-primary">Launch Python IDE →</a>
+                <a href="/html-compiler" class="btn-hero-secondary">Open Web Compiler</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Consistent SaaS Footer -->
+        <!-- Standardized High-Volume FAQ Section -->
+    <section class="faq-section" aria-label="Frequently Asked Questions">
+        <div class="section-head">
+            <div class="section-tag">About & Mission FAQ</div>
+            <h2 class="section-title">Frequently Asked Questions About Our Mission</h2>
+            <p class="section-subtitle">Learn more about our educational philosophy and why we keep the platform open to all.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <details class="faq-item" open>
+                <summary class="faq-summary">
+                    <span>What is the core mission of FreePythonCompiler?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Our mission is to democratize programming education and rapid prototyping by providing a zero-setup, zero-cost, high-performance online IDE accessible to anyone with a web browser worldwide.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Who is FreePythonCompiler designed for?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> FreePythonCompiler is built for students learning computer science, educators conducting classroom demonstrations, researchers testing quick algorithms, and professional developers prototyping web and Python components.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Why did we choose WebAssembly instead of server-side containers?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Server-based compilers are expensive to maintain, suffer from network bottlenecks, and require strict execution timeouts. Client-side WebAssembly shifts execution to the user's browser, giving unlimited free compute, instant responses, and bulletproof user privacy.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Can schools, universities, and coding bootcamps use FreePythonCompiler?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Yes. FreePythonCompiler is freely available for educational institutions. Because it requires zero software installation or administrator privileges, it runs seamlessly on Chromebooks, school laptops, and restricted lab computers.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>How is FreePythonCompiler funded and maintained?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> FreePythonCompiler is sustained through non-intrusive developer sponsorships and partnerships. We are committed to keeping core compilation, Monaco editor features, and the Python runtime free for everyone forever.
+                    </p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <footer class="saas-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" aria-label="FreePythonCompiler Home">
+                    <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+                    <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+                </a>
+                <p>The free, instant online code compiler and development playground. Run Python and web code directly in your browser with zero latency.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="/python-compiler">Python Compiler</a></li>
+                    <li><a href="/html-compiler">HTML/CSS/JS Compiler</a></li>
+                    <li><a href="/features">Features &amp; Engine</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/blog">Blog &amp; Tutorials</a></li>
+                    <li><a href="/contact">Support &amp; Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/advertise">Advertise With Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 FreePythonCompiler. All rights reserved.</span>
+            <span>Built with Pyodide WebAssembly &amp; Monaco Editor.</span>
         </div>
     </footer>
 

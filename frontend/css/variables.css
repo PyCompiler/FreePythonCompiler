@@ -20,74 +20,135 @@
     --radius-sm: 6px;
     --radius-md: 8px;
     --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
 
     /* Animation Tokens */
     --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ==========================================================================
+       GLOBAL BRAND DESIGN TOKENS
+       Change these tokens to instantly rebrand the ENTIRE website in one place!
+       ========================================================================== */
+    /* Primary Brand Identity (Logo Warm Gold/Amber) */
+    --brand-primary: #FAAE0E;
+    --brand-primary-hover: #E09B07;
+    --brand-primary-text: #070B14;
+    --brand-primary-glow: rgba(250, 174, 14, 0.35);
+    --brand-primary-gradient: linear-gradient(135deg, #FDE047 0%, #FAAE0E 50%, #F59E0B 100%);
+
+    /* Secondary Brand Identity (CPython Infrastructure Blue) */
+    --brand-secondary: #0EA5E9;
+    --brand-secondary-hover: #0284C7;
+    --brand-secondary-text: #FFFFFF;
+    --brand-secondary-glow: rgba(14, 165, 233, 0.35);
+    --brand-secondary-gradient: linear-gradient(135deg, #38BDF8 0%, #60A5FA 50%, #3B82F6 100%);
+
+    /* Universal Brand Gradient Mappings */
+    --gradient-brand: var(--brand-primary-gradient);
+    --gradient-accent: var(--brand-primary-gradient);
+    --gradient-amber: var(--brand-primary-gradient);
+    --gradient-cta: var(--brand-primary-gradient);
+    --gradient-python: var(--brand-secondary-gradient);
+    --gradient-glow: radial-gradient(circle at 50% 0%, var(--brand-primary-glow) 0%, transparent 70%);
 }
 
-/* Dark Theme (Professional Slate/Indigo) */
+/* ==========================================================================
+   Dark Theme (Default)
+   ========================================================================== */
 .theme-dark {
-    --bg-body: #0B1120;
-    --bg-header: #0B1120;
+    --bg-body: #070B14;
+    --bg-surface: #0D1424;
+    --bg-header: rgba(7, 11, 20, 0.88);
     --bg-panel: #0F172A;
-    --bg-console: #0F172A;
-    --border-color: #1E293B;
+    --bg-card: rgba(15, 23, 42, 0.7);
+    --bg-card-hover: rgba(30, 41, 59, 0.85);
+    --bg-console: #0A0F1D;
+    --border-color: rgba(255, 255, 255, 0.09);
+    --border-highlight: var(--brand-primary-glow);
 
     --text-base: #F8FAFC;
     --text-muted: #94A3B8;
-    --text-highlight: #38BDF8;
+    --text-subtle: #64748B;
+    --text-highlight: var(--brand-primary);
+    --text-accent2: var(--brand-primary);
     --text-error: #F87171;
     --text-warn: #FBBF24;
-    --text-info: #38BDF8;
-    --text-success: #4ADE80;
+    --text-info: var(--brand-secondary);
+    --text-success: #2DD4BF;
 
     --resizer-bg: #1E293B;
-    --resizer-hover: #2563EB;
+    --resizer-hover: var(--brand-primary);
 
-    --btn-bg: #1E293B;
-    --btn-bg-hover: #334155;
+    --btn-bg: rgba(30, 41, 59, 0.9);
+    --btn-bg-hover: rgba(51, 65, 85, 0.95);
     --btn-text: #F8FAFC;
 
-    --btn-primary-bg: #2563EB;
-    --btn-primary-hover: #1D4ED8;
-    --btn-primary-text: #FFFFFF;
+    /* Global Primary Action CTA Buttons */
+    --btn-primary-bg: var(--brand-primary);
+    --btn-primary-hover: var(--brand-primary-hover);
+    --btn-primary-text: var(--brand-primary-text);
+    --btn-primary-shadow: 0 4px 20px var(--brand-primary-glow);
+    --btn-primary-shadow-hover: 0 8px 28px rgba(250, 174, 14, 0.55);
 
+    /* Secondary & Danger Buttons */
     --btn-danger-bg: #DC2626;
     --btn-danger-hover: #B91C1C;
     --btn-danger-text: #FFFFFF;
 
     --tab-bg: #0B1120;
     --tab-active-bg: #0F172A;
-    --tab-border: #2563EB;
+    --tab-border: var(--brand-primary);
     --tab-hover-bg: #1E293B;
+
+    --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.55), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+    --shadow-glow: 0 0 50px -10px var(--brand-primary-glow);
+    --badge-bg: rgba(250, 174, 14, 0.12);
+    --badge-border: rgba(250, 174, 14, 0.3);
+    --badge-text: var(--brand-primary);
+    --accent-amber: var(--brand-primary);
+    --accent-blue: var(--brand-secondary);
 }
 
-/* Light Theme (Muted Whites/Off-whites/Indigo) */
+/* ==========================================================================
+   Light Theme (Clean Minimalist White/Slate)
+   ========================================================================== */
 .theme-light {
     --bg-body: #F8FAFC;
-    --bg-header: #FFFFFF;
+    --bg-surface: #FFFFFF;
+    --bg-header: rgba(255, 255, 255, 0.9);
     --bg-panel: #FFFFFF;
-    --bg-console: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F1F5F9;
+    --bg-console: #F1F5F9;
     --border-color: #E2E8F0;
+    --border-highlight: rgba(250, 174, 14, 0.35);
 
     --text-base: #0F172A;
-    --text-muted: #64748B;
-    --text-highlight: #2563EB;
+    --text-muted: #475569;
+    --text-subtle: #94A3B8;
+    --text-highlight: #C08A00;
     --text-error: #DC2626;
-    --text-warn: #D97706;
-    --text-info: #2563EB;
-    --text-success: #16A34A;
+    --text-warn: #C08A00;
+    --text-info: #0369A1;
+    --text-success: #0D9488;
 
     --resizer-bg: #E2E8F0;
-    --resizer-hover: #2563EB;
+    --resizer-hover: #C08A00;
 
     --btn-bg: #F1F5F9;
     --btn-bg-hover: #E2E8F0;
     --btn-text: #0F172A;
 
-    --btn-primary-bg: #2563EB;
-    --btn-primary-hover: #1D4ED8;
-    --btn-primary-text: #FFFFFF;
+    /* Global Primary Action CTA Buttons — true logo gold with dark text */
+    --btn-primary-bg: #FAAE0E;
+    --btn-primary-hover: #E09B07;
+    --btn-primary-text: #0F172A;
+    --btn-primary-shadow: 0 4px 20px rgba(250, 174, 14, 0.3);
+    --btn-primary-shadow-hover: 0 8px 28px rgba(250, 174, 14, 0.5);
 
     --btn-danger-bg: #DC2626;
     --btn-danger-hover: #B91C1C;
@@ -95,6 +156,20 @@
 
     --tab-bg: #F8FAFC;
     --tab-active-bg: #FFFFFF;
-    --tab-border: #2563EB;
+    --tab-border: #C08A00;
     --tab-hover-bg: #F1F5F9;
+
+    --shadow-card: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 40px -10px rgba(250, 174, 14, 0.2);
+    --badge-bg: rgba(250, 174, 14, 0.1);
+    --badge-border: rgba(192, 138, 0, 0.35);
+    --badge-text: #8B6200;
+    --accent-amber: #C08A00;
+    --accent-blue: #0369A1;
+
+    /* Light Mode Gradient Overrides — match exact logo gold */
+    --gradient-accent: linear-gradient(135deg, #FDE047 0%, #FAAE0E 50%, #F59E0B 100%);
+    --gradient-brand: linear-gradient(135deg, #FDE047 0%, #FAAE0E 50%, #F59E0B 100%);
+    --gradient-cta: linear-gradient(135deg, #FDE047 0%, #FAAE0E 50%, #F59E0B 100%);
+    --gradient-amber: linear-gradient(135deg, #FDE047 0%, #FAAE0E 50%, #F59E0B 100%);
 }

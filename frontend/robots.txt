@@ -1,4 +1,44 @@
+# robots.txt for FreePythonCompiler.com
+# Allow all search engines and AI crawlers for optimal SEO & GEO (Generative Engine Optimization)
+
 User-agent: *
 Allow: /
 
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Google Search & Google Extended (Gemini)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+# Apple Search
+User-agent: Applebot
+Allow: /
+
+# XML Sitemap
 Sitemap: https://freepythoncompiler.com/sitemap.xml
+
+# LLM & GEO Knowledge File
+# See: https://freepythoncompiler.com/llms.txt

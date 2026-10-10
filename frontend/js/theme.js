@@ -40,4 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
             updateIcons(next);
         });
     });
+
+    // Mobile navigation burger toggle
+    const burgerBtn = document.querySelector('.burger-btn, #burger-btn');
+    const navLinks = document.querySelector('.page-nav-links');
+    if (burgerBtn && navLinks) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = burgerBtn.classList.toggle('open');
+            navLinks.classList.toggle('mobile-open', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('open');
+                navLinks.classList.remove('mobile-open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('mobile-open')) {
+                if (!navLinks.contains(e.target) && !burgerBtn.contains(e.target)) {
+                    burgerBtn.classList.remove('open');
+                    navLinks.classList.remove('mobile-open');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    }
 });

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture & Engine Features | FreePythonCompiler</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="description" content="Explore the architecture of FreePythonCompiler: client-side Pyodide WebAssembly, Microsoft Monaco Editor, virtual file systems, and zero-latency sandboxing.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://freepythoncompiler.com/features">
+
+    <!-- Open Graph / Facebook -->
+    <!-- Twitter -->
+    <!-- AEO / GEO Structured Data Schemas -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVVTV058YR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QVVTV058YR');
+    </script>
+    <meta property="og:site_name" content="FreePythonCompiler">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Architecture & Engine Features | FreePythonCompiler">
+    <meta property="og:description" content="Explore the architecture of FreePythonCompiler: client-side Pyodide WebAssembly, Microsoft Monaco Editor, virtual file systems, and zero-latency sandboxing.">
+    <meta property="og:url" content="https://freepythoncompiler.com/features">
+    <meta property="og:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Architecture & Engine Features | FreePythonCompiler">
+    <meta name="twitter:description" content="Explore the architecture of FreePythonCompiler: client-side Pyodide WebAssembly, Microsoft Monaco Editor, virtual file systems, and zero-latency sandboxing.">
+    <meta name="twitter:image" content="https://freepythoncompiler.com/images/og-image.png">
+    <meta name="google-site-verification" content="G-QVVTV058YR-site-verification">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "FreePythonCompiler Architecture & WebAssembly Engine Specifications",
+      "description": "Technical analysis of client-side Python execution via Pyodide WebAssembly and Monaco Editor sandboxing.",
+      "author": {
+        "@type": "Organization",
+        "name": "FreePythonCompiler Engineering Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FreePythonCompiler",
+        "url": "https://freepythoncompiler.com/"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does Pyodide WebAssembly achieve near-native execution performance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pyodide compiles the official CPython 3.12 codebase directly into WebAssembly (WASM) bytecode via Emscripten. This allows your browser's V8 or SpiderMonkey JavaScript engine to execute Python instructions at near-native CPU speeds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the strict null-origin sandbox protect my local environment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Web preview renders inside an isolated iframe with an opaque null origin (sandbox='allow-scripts'). This creates an impenetrable boundary that prevents executed code from accessing your parent cookies, local storage, or session tokens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What capabilities does the Microsoft Monaco Editor integration provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FreePythonCompiler embeds the Microsoft Monaco Editor engine\u2014the exact technology powering Visual Studio Code. It provides real IntelliSense code completion, syntax highlighting, bracket matching, code folding, and standard keyboard shortcuts (Ctrl+Enter, Ctrl+Z, Ctrl+F)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does serverless project sharing work without a database?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We serialize and compress your project state using client-side LZ-string compression and URL-safe Base64 encoding directly into the URL fragment. When opened, the recipient's browser hydrates the workspace entirely on their device without storing data on our servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the Virtual File System (VFS) for multi-file Python packages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The interactive VFS lets you create folders, nest submodules (e.g., utils.py, models.py), and import them using standard Python import statements within your workspace session."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+
+<body class="theme-dark page-static">
+    <!-- Navbar -->
+    <nav class="page-nav">
+        <a href="/" class="logo menu-link" aria-label="FreePythonCompiler Home">
+            <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+            <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+        </a>
+        <div class="page-nav-links">
+            <a href="/" class="menu-link">Home</a>
+            <a href="/features" class="menu-link active">Features</a>
+            <a href="/about" class="menu-link">About</a>
+            <a href="/blog" class="menu-link">Blog</a>
+            <a href="/contact" class="menu-link">Contact</a>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
+                </svg>
+            </button>
+            <a href="/python-compiler" class="btn btn-primary">Open Editor</a>
+        </div>
+        <button class="burger-btn" id="burger-btn" aria-label="Toggle Navigation Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+    </nav>
+
+    <!-- Features Header -->
+    <header class="hero-wrapper" style="padding-bottom: var(--space-8);">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span>Platform Capabilities & Architecture</span>
+            </div>
+            <h1 class="hero-headline" style="font-size: 46px;">
+                Engineered for Speed. <br><span class="gradient-text">Built for Absolute Freedom.</span>
+            </h1>
+            <p class="hero-desc" style="max-width: 640px; margin: 0 auto var(--space-8);">
+                A deep dive into our client-side Python 3.12 and Web execution engine. Discover how Microsoft Monaco, Pyodide WebAssembly, and isolated sandboxing create a zero-friction playground.
+            </p>
+            <div style="display: flex; justify-content: center; gap: var(--space-4);">
+                <a href="/python-compiler" class="btn-hero-primary">Launch Python IDE</a>
+                <a href="/html-compiler" class="btn-hero-secondary">Try HTML/CSS Sandbox</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Detailed Feature Pillars (Bento Style) -->
+    <section class="bento-section" aria-label="Feature Pillars">
+        <div class="section-head" style="text-align: center; margin-bottom: var(--space-10);">
+            <h2 class="section-title">Core Platform Architecture &amp; Capabilities</h2>
+            <p class="section-subtitle" style="color: var(--text-muted); max-width: 680px; margin: var(--space-2) auto 0;">Six foundational engineering pillars designed for speed, privacy, and full browser-based independence.</p>
+        </div>
+        <div class="bento-grid">
+            <!-- Pillar 1: Monaco Editor (Span 2) -->
+            <div class="bento-card bento-span-2">
+                <div class="bento-icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                        <line x1="9" y1="20" x2="15" y2="20"></line>
+                        <line x1="12" y1="4" x2="12" y2="20"></line>
+                    </svg>
+                </div>
+                <h3>1. Microsoft Monaco Editor Core</h3>
+                <p>
+                    FreePythonCompiler embeds the official Monaco Editor—the exact engine powering Visual Studio Code. Rather than a rudimentary text field, you get a full professional coding experience:
+                </p>
+                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: var(--space-6); padding-left: 20px;">
+                    <li><strong>Context-Aware IntelliSense:</strong> Autocomplete suggestions for Python built-ins, HTML elements, CSS rules, and JavaScript APIs.</li>
+                    <li><strong>Syntax Highlighting & Bracket Matching:</strong> Color-coded tokenization with automatic rainbow bracket pairs and line guides.</li>
+                    <li><strong>Advanced Multi-Cursor Editing:</strong> Hold <code>Alt</code> (or <code>Option</code>) to place multiple cursors simultaneously.</li>
+                    <li><strong>Standardized Status Bar:</strong> Real-time line/column cursor tracking, indentation controls (Spaces: 4), and UTF-8 encoding display.</li>
+                </ul>
+                <div class="bento-preview-box">
+                    <span>⚡ Standard VS Code Keybindings: Ctrl+F (Find/Replace) • Ctrl+/ (Comment) • Ctrl+Z/Y (History)</span>
+                </div>
+            </div>
+
+            <!-- Pillar 2: Pyodide WebAssembly Engine -->
+            <div class="bento-card">
+                <div class="bento-icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <h3>2. Client-Side Pyodide WASM</h3>
+                <p>
+                    Python 3.12 executes directly within your browser's WebAssembly sandbox. Because there are no backend servers handling your computation:
+                </p>
+                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: var(--space-6); padding-left: 20px;">
+                    <li><strong>0ms Server Queue Latency:</strong> Immediate execution without cold starts or network timeouts.</li>
+                    <li><strong>Complete Offline Resilience:</strong> Once the WASM runtime is cached, scripts execute even if your internet disconnects.</li>
+                    <li><strong>Rich Standard Library:</strong> Math, itertools, re, datetime, json, and collections run with native speed.</li>
+                </ul>
+                <div class="bento-preview-box">
+                    <span>⚡ Benchmarks: Instant local execution in ~0.04s</span>
+                </div>
+            </div>
+
+            <!-- Pillar 3: Virtual File System -->
+            <div class="bento-card">
+                <div class="bento-icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <h3>3. Hierarchical Virtual File System</h3>
+                <p>
+                    Unlike single-file snippet runners, FreePythonCompiler features a persistent Virtual File System (VFS) with an interactive sidebar:
+                </p>
+                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: var(--space-6); padding-left: 20px;">
+                    <li><strong>Modular Architecture:</strong> Split complex programs into multiple modules (e.g., <code>helper.py</code>, <code>models.py</code>).</li>
+                    <li><strong>Nested Folders:</strong> Create deep directory hierarchies to organize assets and scripts.</li>
+                    <li><strong>Local Persistence:</strong> Files remain safely stored in your browser's IndexedDB / localStorage across sessions.</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 4: Zero-Vulnerability Security -->
+            <div class="bento-card">
+                <div class="bento-icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <h3>4. Strict Null-Origin Sandbox</h3>
+                <p>
+                    Security is central to our design. Web previews run in an isolated null-origin sandbox:
+                </p>
+                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: var(--space-6); padding-left: 20px;">
+                    <li><strong>Cross-Site Scripting Protection:</strong> Untrusted script execution cannot access parent cookies or credentials.</li>
+                    <li><strong>Dedicated PostMessage Bridge:</strong> Safe, structured communication pipes console messages without cross-origin leaks.</li>
+                    <li><strong>Zero Server Storage:</strong> Your private code is never logged, indexed, or stored remotely.</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 5: Developer Console & Diagnostics -->
+            <div class="bento-card">
+                <div class="bento-icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                </div>
+                <h3>5. Integrated DevTools Console</h3>
+                <p>
+                    Debug your scripts with a full-featured console integrated directly into the workspace:
+                </p>
+                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: var(--space-6); padding-left: 20px;">
+                    <li><strong>Multi-Channel Interceptor:</strong> Captures <code>console.log</code>, <code>warn</code>, <code>error</code>, and Python <code>stdout/stderr</code>.</li>
+                    <li><strong>Traceback Formatting:</strong> Python exceptions include highlighted line numbers for instant debugging.</li>
+                    <li><strong>One-Click Clear:</strong> Keep your output clean during rapid test iterations.</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 6: Sharing & Productivity (Span 3) -->
+            <div class="bento-card" style="grid-column: span 3;">
+                <div class="bento-icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                </div>
+                <h3>6. Algorithmic Snippets Library & Instant Sharing</h3>
+                <p>
+                    Supercharge learning and collaboration with built-in productivity tools accessible with a single click or keyboard shortcut:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-4);">
+                    <div class="bento-preview-box">
+                        <strong>📦 Snippets Library (F11)</strong><br>
+                        Instant templates for Binary Search, Sorting, Fibonacci, Recursion, and Web layouts.
+                    </div>
+                    <div class="bento-preview-box">
+                        <strong>🔗 Compressed URL Sharing</strong><br>
+                        Share complete project state encoded in URL hash without creating any accounts.
+                    </div>
+                    <div class="bento-preview-box">
+                        <strong>💾 ZIP & File Download</strong><br>
+                        Export all sources directly to your desktop for local use in VS Code or production.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture Specifications (AEO / GEO Table) -->
+    <section class="comparison-section" aria-label="Technical Specifications">
+        <div class="section-head">
+            <div class="section-tag">Specifications</div>
+            <h2 class="section-title">Technical Architecture & Stack</h2>
+            <p class="section-subtitle">Verified technical parameters for engineers and AI answer engines.</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>System Layer</th>
+                        <th class="col-highlight">Implementation</th>
+                        <th>Technical Specifications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-feature"><strong>Editor Core</strong></td>
+                        <td class="col-highlight" data-label="Implementation">Microsoft Monaco AMD</td>
+                        <td data-label="Technical Specifications">VS Code v0.45 engine, IntelliSense, multi-cursor, syntax tree analysis</td>
+                    </tr>
+                    <tr>
+                        <td class="col-feature"><strong>Python Runtime</strong></td>
+                        <td class="col-highlight" data-label="Implementation">Pyodide (WebAssembly)</td>
+                        <td data-label="Technical Specifications">CPython 3.12 compiled to WASM via Emscripten; zero server hops</td>
+                    </tr>
+                    <tr>
+                        <td class="col-feature"><strong>Web Sandbox</strong></td>
+                        <td class="col-highlight" data-label="Implementation">Isolated Iframe srcdoc</td>
+                        <td data-label="Technical Specifications">Opaque null-origin sandbox (<code>allow-scripts</code> only), cross-origin isolation</td>
+                    </tr>
+                    <tr>
+                        <td class="col-feature"><strong>Diagnostics Bridge</strong></td>
+                        <td class="col-highlight" data-label="Implementation">Window PostMessage API</td>
+                        <td data-label="Technical Specifications">Bi-directional console telemetry stream with structured JSON payloads</td>
+                    </tr>
+                    <tr>
+                        <td class="col-feature"><strong>File System (VFS)</strong></td>
+                        <td class="col-highlight" data-label="Implementation">Local Virtual Storage</td>
+                        <td data-label="Technical Specifications">DOM-independent tree model, browser storage persistence, ZIP archiver</td>
+                    </tr>
+                    <tr>
+                        <td class="col-feature"><strong>Design System</strong></td>
+                        <td class="col-highlight" data-label="Implementation">Vanilla CSS Tokens</td>
+                        <td data-label="Technical Specifications">Zero-dependency HSL design system with instant dark & light mode toggling</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Pre-Footer High-Conversion Banner -->
+        <!-- Standardized High-Volume FAQ Section -->
+    <section class="faq-section" aria-label="Frequently Asked Questions">
+        <div class="section-head">
+            <div class="section-tag">Technical Answers</div>
+            <h2 class="section-title">Frequently Asked Architecture Questions</h2>
+            <p class="section-subtitle">Direct, authoritative answers designed for developer reference.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <details class="faq-item" open>
+                <summary class="faq-summary">
+                    <span>How does Pyodide WebAssembly achieve near-native execution performance?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Pyodide compiles the official CPython 3.12 codebase directly into WebAssembly (WASM) bytecode via Emscripten. This allows your browser's V8 or SpiderMonkey JavaScript engine to execute Python instructions at near-native CPU speeds.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>How does the strict null-origin sandbox protect my local environment?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Web preview renders inside an isolated iframe with an opaque null origin (sandbox='allow-scripts'). This creates an impenetrable boundary that prevents executed code from accessing your parent cookies, local storage, or session tokens.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>What capabilities does the Microsoft Monaco Editor integration provide?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> FreePythonCompiler embeds the Microsoft Monaco Editor engine—the exact technology powering Visual Studio Code. It provides real IntelliSense code completion, syntax highlighting, bracket matching, code folding, and standard keyboard shortcuts (Ctrl+Enter, Ctrl+Z, Ctrl+F).
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>How does serverless project sharing work without a database?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> We serialize and compress your project state using client-side LZ-string compression and URL-safe Base64 encoding directly into the URL fragment. When opened, the recipient's browser hydrates the workspace entirely on their device without storing data on our servers.
+                    </p>
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-summary">
+                    <span>Can I use the Virtual File System (VFS) for multi-file Python packages?</span>
+                    <svg class="faq-icon-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="faq-answer">
+                    <p class="aeo-answer-box">
+                        <strong>Direct Answer:</strong> Yes. The interactive VFS lets you create folders, nest submodules (e.g., utils.py, models.py), and import them using standard Python import statements within your workspace session.
+                    </p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="cta-banner-wrapper">
+        <div class="cta-banner-card">
+            <h2>Experience the Power of FreePythonCompiler</h2>
+            <p>Start writing code immediately in our zero-setup online IDE. No registration required.</p>
+            <a href="/python-compiler" class="btn-hero-primary">
+                <span>Launch Python Editor</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="saas-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo" aria-label="FreePythonCompiler Home">
+                    <img src="/images/logo-dark.svg" alt="FreePythonCompiler" class="brand-logo logo-dark">
+                    <img src="/images/logo-light.svg" alt="FreePythonCompiler" class="brand-logo logo-light">
+                </a>
+                <p>The free, instant online code compiler and development playground. Run Python and web code directly in your browser with zero latency.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="/python-compiler">Python Compiler</a></li>
+                    <li><a href="/html-compiler">HTML/CSS/JS Compiler</a></li>
+                    <li><a href="/features">Features & Engine</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/blog">Blog & Tutorials</a></li>
+                    <li><a href="/contact">Support & Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/advertise">Advertise With Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 FreePythonCompiler. All rights reserved.</span>
+            <span>Built with Pyodide WebAssembly & Monaco Editor.</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script src="js/theme.js?v=4"></script>
+</body>
+
+</html>
