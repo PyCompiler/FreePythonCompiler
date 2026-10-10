@@ -1,5 +1,6 @@
 const WP_API_URL = 'https://cms.freepythoncompiler.com/wp-json/wp/v2/posts?_embed&per_page=9';
 const blogGrid = document.getElementById('blog-grid');
+const CACHE_KEY = 'fpc_blog_posts_cache';
 
 function renderSkeletons() {
     blogGrid.innerHTML = Array(6).fill(`
@@ -21,50 +22,78 @@ function formatDate(dateString) {
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
-async function fetchPosts() {
-    renderSkeletons();
+function renderPosts(posts) {
+    if (!posts || posts.length === 0) {
+        blogGrid.innerHTML = '<p class="text-muted" style="text-align:center; padding: 2rem;">No posts found. Publish something on WordPress!</p>';
+        return;
+    }
 
-    try {
-        const response = await fetch(WP_API_URL);
-        if (!response.ok) throw new Error('Failed to fetch posts');
+    blogGrid.innerHTML = posts.map(post => {
+        const title = post.title.rendered;
+        const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').substring(0, 120) + '...';
+        const date = formatDate(post.date);
+        const slug = post.slug;
 
-        const posts = await response.json();
-
-        if (posts.length === 0) {
-            blogGrid.innerHTML = '<p class="text-muted">No posts found. Publish something on WordPress!</p>';
-            return;
+        let imgUrl = '';
+        try {
+            imgUrl = post._embedded['wp:featuredmedia'][0].source_url;
+        } catch (e) {
+            imgUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMzMzMiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzY2NiIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q29tcGlsZXJJREU8L3RleHQ+PC9zdmc+';
         }
 
-        blogGrid.innerHTML = posts.map(post => {
-            const title = post.title.rendered;
-            const excerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').substring(0, 120) + '...';
-            const date = formatDate(post.date);
-            const slug = post.slug;
+        return `
+            <a href="/blog/${slug}" class="blog-card">
+                <img class="blog-card-image" src="${imgUrl}" alt="${title}" loading="lazy">
+                <div class="blog-card-content">
+                    <div class="blog-card-date">${date}</div>
+                    <h3 class="blog-card-title">${title}</h3>
+                    <div class="blog-card-excerpt">${excerpt}</div>
+                    <span class="blog-card-link">Read More &rarr;</span>
+                </div>
+            </a>
+        `;
+    }).join('');
+}
 
-            // Extract featured image from _embedded
-            let imgUrl = '';
-            try {
-                imgUrl = post._embedded['wp:featuredmedia'][0].source_url;
-            } catch (e) {
-                // Default placeholder
-                imgUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMzMzMiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzY2NiIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q29tcGlsZXJJREU8L3RleHQ+PC9zdmc+';
-            }
+async function fetchPosts() {
+    // SWR (Stale-While-Revalidate): Render cached posts immediately if available
+    let hasRenderedCache = false;
+    try {
+        const cached = sessionStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const cachedPosts = JSON.parse(cached);
+            renderPosts(cachedPosts);
+            hasRenderedCache = true;
+        }
+    } catch (e) {
+        console.warn('Failed to read blog cache:', e);
+    }
 
-            return `
-                <a href="/blog/${slug}" class="blog-card">
-                    <img class="blog-card-image" src="${imgUrl}" alt="${title}" loading="lazy">
-                    <div class="blog-card-content">
-                        <div class="blog-card-date">${date}</div>
-                        <h3 class="blog-card-title">${title}</h3>
-                        <div class="blog-card-excerpt">${excerpt}</div>
-                        <span class="blog-card-link">Read More &rarr;</span>
-                    </div>
-                </a>
-            `;
-        }).join('');
+    if (!hasRenderedCache) {
+        renderSkeletons();
+    }
+
+    // Always fetch fresh posts in the background (Live Invalidation without Netlify build)
+    try {
+        const cacheBusterUrl = `${WP_API_URL}&_cb=${Date.now()}`;
+        const response = await fetch(cacheBusterUrl, {
+            cache: 'no-cache',
+            headers: { 'Cache-Control': 'no-cache' }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch posts');
+        const freshPosts = await response.json();
+
+        // Update DOM and cache
+        renderPosts(freshPosts);
+        try {
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify(freshPosts));
+        } catch (e) { }
     } catch (error) {
-        console.error('Error loading blog:', error);
-        blogGrid.innerHTML = '<p class="text-error" style="color:red">Oops, unable to load blog posts. Ensure your WordPress REST API is accessible.</p>';
+        console.error('Error loading fresh blog posts:', error);
+        if (!hasRenderedCache) {
+            blogGrid.innerHTML = '<p class="text-error" style="color:var(--text-muted); text-align:center; padding: 2rem;">Unable to load blog posts at this moment. Please check back shortly.</p>';
+        }
     }
 }
 

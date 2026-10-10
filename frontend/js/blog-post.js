@@ -40,7 +40,11 @@ async function loadPost() {
     renderLoader();
 
     try {
-        const response = await fetch(WP_API_URL);
+        const cacheBusterUrl = `${WP_API_URL}&_cb=${Date.now()}`;
+        const response = await fetch(cacheBusterUrl, {
+            cache: 'no-cache',
+            headers: { 'Cache-Control': 'no-cache' }
+        });
         const posts = await response.json();
 
         if (!posts || posts.length === 0) {
