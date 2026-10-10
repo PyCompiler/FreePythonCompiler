@@ -55,40 +55,46 @@ function renderPosts(posts) {
     }).join('');
 }
 
-async function fetchPosts() {
+let cachedPostsJson = null;
+
+async function fetchPosts(isBackgroundRevalidation = false) {
     // SWR (Stale-While-Revalidate): Render cached posts immediately if available
     let hasRenderedCache = false;
     try {
-        const cached = sessionStorage.getItem(CACHE_KEY);
+        const cached = localStorage.getItem(CACHE_KEY);
         if (cached) {
+            cachedPostsJson = cached;
             const cachedPosts = JSON.parse(cached);
-            renderPosts(cachedPosts);
+            if (!isBackgroundRevalidation) {
+                renderPosts(cachedPosts);
+            }
             hasRenderedCache = true;
         }
     } catch (e) {
         console.warn('Failed to read blog cache:', e);
     }
 
-    if (!hasRenderedCache) {
+    if (!hasRenderedCache && !isBackgroundRevalidation) {
         renderSkeletons();
     }
 
     // Always fetch fresh posts in the background (Live Invalidation without Netlify build)
     try {
         const cacheBusterUrl = `${WP_API_URL}&_cb=${Date.now()}`;
-        const response = await fetch(cacheBusterUrl, {
-            cache: 'no-cache',
-            headers: { 'Cache-Control': 'no-cache' }
-        });
+        const response = await fetch(cacheBusterUrl);
 
         if (!response.ok) throw new Error('Failed to fetch posts');
         const freshPosts = await response.json();
+        const freshPostsJson = JSON.stringify(freshPosts);
 
-        // Update DOM and cache
-        renderPosts(freshPosts);
-        try {
-            sessionStorage.setItem(CACHE_KEY, JSON.stringify(freshPosts));
-        } catch (e) { }
+        // Only update DOM if posts actually changed or if we haven't rendered yet
+        if (freshPostsJson !== cachedPostsJson || !hasRenderedCache) {
+            cachedPostsJson = freshPostsJson;
+            renderPosts(freshPosts);
+            try {
+                localStorage.setItem(CACHE_KEY, freshPostsJson);
+            } catch (e) { }
+        }
     } catch (error) {
         console.error('Error loading fresh blog posts:', error);
         if (!hasRenderedCache) {
@@ -97,4 +103,11 @@ async function fetchPosts() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', fetchPosts);
+document.addEventListener('DOMContentLoaded', () => fetchPosts(false));
+
+// Revalidate on tab focus (e.g., when returning after publishing in WordPress admin)
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        fetchPosts(true);
+    }
+});

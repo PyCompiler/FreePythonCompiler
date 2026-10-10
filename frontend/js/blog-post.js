@@ -31,66 +31,108 @@ function formatDate(dateString) {
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
-async function loadPost() {
+const CACHE_POST_KEY = slug ? 'fpc_post_' + slug : null;
+let cachedPostData = null;
+
+function renderPost(post) {
+    const title = post.title.rendered;
+    const content = post.content.rendered;
+    const date = formatDate(post.date);
+
+    let author = 'FreePythonCompiler Team';
+    try { author = post._embedded.author[0].name; } catch (e) { }
+
+    let imgHtml = '';
+    try {
+        const imgUrl = post._embedded['wp:featuredmedia'][0].source_url;
+        imgHtml = `<img src="${imgUrl}" class="post-featured-image" alt="${title}">`;
+    } catch (e) { }
+
+    // Calculate estimated read time
+    const wordCount = content.replace(/<[^>]+>/g, '').split(' ').length;
+    const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
+    postContainer.innerHTML = `
+        <div class="post-header">
+            <h1 class="post-title">${title}</h1>
+            <div class="post-meta">By ${author} • ${date} • ${readTime} min read</div>
+        </div>
+        ${imgHtml}
+        <div class="post-content">
+            ${content}
+        </div>
+    `;
+
+    document.title = `${title} | FreePythonCompiler Blog`;
+}
+
+async function loadPost(isBackgroundRevalidation = false) {
     if (!slug) {
         postContainer.innerHTML = '<h2>Post not found</h2><p>Invalid URL.</p>';
         return;
     }
 
-    renderLoader();
+    let hasRenderedCache = false;
+    if (CACHE_POST_KEY) {
+        try {
+            const cached = localStorage.getItem(CACHE_POST_KEY);
+            if (cached) {
+                cachedPostData = JSON.parse(cached);
+                if (!isBackgroundRevalidation) {
+                    renderPost(cachedPostData);
+                }
+                hasRenderedCache = true;
+            }
+        } catch (e) {
+            console.warn('Failed to read post cache:', e);
+        }
+    }
+
+    if (!hasRenderedCache && !isBackgroundRevalidation) {
+        renderLoader();
+    }
 
     try {
         const cacheBusterUrl = `${WP_API_URL}&_cb=${Date.now()}`;
-        const response = await fetch(cacheBusterUrl, {
-            cache: 'no-cache',
-            headers: { 'Cache-Control': 'no-cache' }
-        });
+        const response = await fetch(cacheBusterUrl);
         const posts = await response.json();
 
         if (!posts || posts.length === 0) {
-            postContainer.innerHTML = `
-                <div class="post-header">
-                    <h2>Post not found</h2>
-                    <p>The article you're looking for doesn't exist or was removed.</p>
-                </div>
-            `;
+            if (!hasRenderedCache) {
+                postContainer.innerHTML = `
+                    <div class="post-header">
+                        <h2>Post not found</h2>
+                        <p>The article you're looking for doesn't exist or was removed.</p>
+                    </div>
+                `;
+            }
             return;
         }
 
-        const post = posts[0];
-        const title = post.title.rendered;
-        const content = post.content.rendered;
-        const date = formatDate(post.date);
+        const freshPost = posts[0];
+        const freshPostJson = JSON.stringify(freshPost);
 
-        let author = 'FreePythonCompiler Team';
-        try { author = post._embedded.author[0].name; } catch (e) { }
-
-        let imgHtml = '';
-        try {
-            const imgUrl = post._embedded['wp:featuredmedia'][0].source_url;
-            imgHtml = `<img src="${imgUrl}" class="post-featured-image" alt="${title}">`;
-        } catch (e) { }
-
-        // Calculate estimated read time
-        const wordCount = content.replace(/<[^>]+>/g, '').split(' ').length;
-        const readTime = Math.max(1, Math.ceil(wordCount / 200));
-
-        postContainer.innerHTML = `
-            <div class="post-header">
-                <h1 class="post-title">${title}</h1>
-                <div class="post-meta">By ${author} • ${date} • ${readTime} min read</div>
-            </div>
-            ${imgHtml}
-            <div class="post-content">
-                ${content}
-            </div>
-        `;
-
-        document.title = `${title} | FreePythonCompiler Blog`;
+        if (JSON.stringify(cachedPostData) !== freshPostJson || !hasRenderedCache) {
+            cachedPostData = freshPost;
+            renderPost(freshPost);
+            if (CACHE_POST_KEY) {
+                try {
+                    localStorage.setItem(CACHE_POST_KEY, freshPostJson);
+                } catch (e) { }
+            }
+        }
     } catch (error) {
         console.error('Error fetching post:', error);
-        postContainer.innerHTML = '<h2>Error loading article</h2><p>Please try again later.</p>';
+        if (!hasRenderedCache) {
+            postContainer.innerHTML = '<h2>Error loading article</h2><p>Please try again later.</p>';
+        }
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadPost);
+document.addEventListener('DOMContentLoaded', () => loadPost(false));
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        loadPost(true);
+    }
+});
