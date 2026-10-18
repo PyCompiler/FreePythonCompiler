@@ -10,13 +10,31 @@
 
 [[redirects]]
   from = "/html-compiler"
-  to = "/compiler.html"
+  to = "/html-compiler.html"
   status = 200
 
 [[redirects]]
   from = "/python-compiler"
   to = "/compiler.html"
   status = 200
+
+[[redirects]]
+  from = "/thonny-online-compiler"
+  to = "/thonny-online-compiler.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/visual-studio-code-online-compiler"
+  to = "/visual-studio-code-online-compiler.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ai-code-editor-online"
+  to = "/ai-code-editor-online.html"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/features"

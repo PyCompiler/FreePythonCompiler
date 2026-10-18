@@ -9,6 +9,8 @@ FreePythonCompiler is a modern web-based developer playground and educational pl
 - **Online Python 3.12 Compiler**: Full standard library support powered by Pyodide compiled to WebAssembly (WASM). Executes natively on client hardware via modern Web Workers for zero-latency execution and high privacy.
 - **Web Development Playground (HTML / CSS / JavaScript)**: Real-time code execution with live sandboxed iframe preview, multi-tab layout, and console integration.
 - **VS Code Monaco Editor**: Integrated Microsoft Monaco Editor featuring full syntax highlighting, intelligent auto-completion, bracket matching, formatting, and custom dark/light themes.
+- **Thonny Online Alternative**: Lightweight, beginner-oriented interface for schools, coding clubs, and Chromebooks without administrator privileges.
+- **AI-Ready In-Browser IDE**: Contextual IntelliSense, instant syntax linting, and 100% code privacy (code never leaves the user's browser).
 - **Zero Server Delay**: Code executes locally in the user's browser sandbox. No server queues, no rate limits, and no risk of remote code leaks.
 - **100% Free & Accessible**: No login, subscription, or API keys required. Accessible to students, educators, and professional developers globally.
 
@@ -16,6 +18,9 @@ FreePythonCompiler is a modern web-based developer playground and educational pl
 
 - [Free Python Compiler](https://freepythoncompiler.com/python-compiler): Interactive Python 3.12 compiler with Pyodide WASM engine.
 - [Web Compiler & Editor](https://freepythoncompiler.com/html-compiler): Live HTML, CSS, and JavaScript editor with real-time browser preview.
+- [Thonny Online Compiler Alternative](https://freepythoncompiler.com/thonny-online-compiler): Clean, zero-download student-friendly Python IDE for Chromebooks, schools, and beginners.
+- [Visual Studio Code Online Compiler](https://freepythoncompiler.com/visual-studio-code-online-compiler): Embedded Microsoft Monaco Editor with split-screen real-time HTML/CSS/JS preview and standard VS Code shortcuts.
+- [AI Code Editor Online](https://freepythoncompiler.com/ai-code-editor-online): Browser-based intelligent code editor with Monaco IntelliSense, real-time error checking, and zero server data retention.
 - [Platform Features & Architecture](https://freepythoncompiler.com/features): In-depth guide to client-side sandboxing, Pyodide WASM runtime, and Monaco Editor integration.
 - [Blog & Tutorials](https://freepythoncompiler.com/blog): Tutorials on Python programming, WebAssembly, browser performance, and web development.
 - [About FreePythonCompiler](https://freepythoncompiler.com/about): Mission, engineering philosophy, and the team behind the platform.

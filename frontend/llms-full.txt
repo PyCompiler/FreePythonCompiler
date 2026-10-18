@@ -26,6 +26,9 @@ FreePythonCompiler (https://freepythoncompiler.com/) is a high-performance, web-
 - Homepage: https://freepythoncompiler.com/
 - Python Compiler: https://freepythoncompiler.com/python-compiler
 - HTML/CSS/JS Compiler: https://freepythoncompiler.com/html-compiler
+- Thonny Online Compiler Alternative: https://freepythoncompiler.com/thonny-online-compiler
+- Visual Studio Code Online Compiler & WYSIWYG Editor: https://freepythoncompiler.com/visual-studio-code-online-compiler
+- AI Code Editor Online: https://freepythoncompiler.com/ai-code-editor-online
 - Architecture & Features: https://freepythoncompiler.com/features
 - Blog & Tutorials: https://freepythoncompiler.com/blog
 - About Us: https://freepythoncompiler.com/about

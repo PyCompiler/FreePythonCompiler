@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content="Interactive online code compiler and editor for Python 3.12, HTML, CSS, and JavaScript. Features VS Code Monaco Editor, instant execution, and dark mode.">
+    <meta name="description" content="Run Python 3.12 code instantly in your browser with zero latency. Free Monaco Editor with Pyodide WebAssembly. No setup or account required.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Python & Web Code Editor | FreePythonCompiler</title>
+    <title>Free Online Python Compiler & IDE (Python 3.12) | FreePythonCompiler</title>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://freepythoncompiler.com/python-compiler">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,25 +37,31 @@
     </script>
     <meta property="og:site_name" content="FreePythonCompiler">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Online Python & Web Code Editor | FreePythonCompiler">
-    <meta property="og:description" content="Interactive online code compiler and editor for Python 3.12, HTML, CSS, and JavaScript. Features VS Code Monaco Editor, instant execution, and dark mode.">
+    <meta property="og:title" content="Free Online Python Compiler & IDE (Python 3.12) | FreePythonCompiler">
+    <meta property="og:description" content="Run Python 3.12 code instantly in your browser with zero latency. Free Monaco Editor with Pyodide WebAssembly. No setup or account required.">
     <meta property="og:url" content="https://freepythoncompiler.com/python-compiler">
     <meta property="og:image" content="https://freepythoncompiler.com/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Online Python & Web Code Editor | FreePythonCompiler">
-    <meta name="twitter:description" content="Interactive online code compiler and editor for Python 3.12, HTML, CSS, and JavaScript. Features VS Code Monaco Editor, instant execution, and dark mode.">
+    <meta name="twitter:title" content="Free Online Python Compiler & IDE (Python 3.12) | FreePythonCompiler">
+    <meta name="twitter:description" content="Run Python 3.12 code instantly in your browser with zero latency. Free Monaco Editor with Pyodide WebAssembly. No setup or account required.">
     <meta name="twitter:image" content="https://freepythoncompiler.com/images/og-image.png">
     <meta name="google-site-verification" content="G-QVVTV058YR-site-verification">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "FreePythonCompiler Online Code Editor",
+      "name": "Free Online Python Compiler & IDE",
       "url": "https://freepythoncompiler.com/python-compiler",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Web Browser",
+      "featureList": [
+        "In-browser Python 3.12 execution via Pyodide WebAssembly",
+        "Full Python standard library support (math, random, sys, json, re)",
+        "Microsoft Monaco Editor with auto-completion and syntax highlighting",
+        "Client-side execution with zero latency and full privacy"
+      ],
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -130,8 +136,8 @@
 
             <div class="header-actions">
                 <select id="lang-selector" class="lang-selector" title="Select Project Type">
+                    <option value="python" selected>Python</option>
                     <option value="web">Web (HTML/CSS/JS)</option>
-                    <option value="python">Python</option>
                 </select>
 
                 <div class="header-divider"></div>
