@@ -2,6 +2,10 @@
 [build]
   publish = "frontend"
 
+[[edge_functions]]
+  path = "/sitemap.xml"
+  function = "sitemap"
+
 [[redirects]]
   from = "/compiler"
   to = "/compiler.html"
